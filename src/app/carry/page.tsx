@@ -7,8 +7,8 @@ type Problem = { a: number; b: number }
 function generateProblems(): Problem[] {
   const problems: Problem[] = []
 
-  // まず、2桁＋2桁の問題を13問作成
-  while (problems.length < 13) {
+  // まず、2桁＋2桁の問題を12問作成
+  while (problems.length < 12) {
     const a = Math.floor(Math.random() * 90) + 10
     const b = Math.floor(Math.random() * 90) + 10
     if ((a % 10) + (b % 10) >= 10 && a + b < 100) {
@@ -16,10 +16,19 @@ function generateProblems(): Problem[] {
     }
   }
 
-  // 次に、1桁＋2桁の問題を3問作成
-  while (problems.length < 16) {
-    const b = Math.floor(Math.random() * 9) + 1 // 1–9
+  // 次に、2桁＋1桁の問題を2問作成
+  while (problems.length < 14) {
     const a = Math.floor(Math.random() * 90) + 10 // 10–99
+    const b = Math.floor(Math.random() * 9) + 1 // 1–9
+    if ((a % 10) + (b % 10) >= 10 && a + b < 100) {
+      problems.push({ a, b })
+    }
+  }
+
+  // 次に、1桁＋2桁の問題を2問作成
+  while (problems.length < 16) {
+    const a = Math.floor(Math.random() * 9) + 1 // 1–9
+    const b = Math.floor(Math.random() * 90) + 10 // 10–99
     if ((a % 10) + (b % 10) >= 10 && a + b < 100) {
       problems.push({ a, b })
     }
