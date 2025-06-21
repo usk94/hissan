@@ -54,17 +54,24 @@ export default function MixPage() {
   const problems = generateUnitProblems()
   const left = problems.slice(0, 8)
   const right = problems.slice(8)
+  const thinSpace = "\u2009"
 
   return (
-    <main className="mx-auto max-w-4xl p-8 print:p-4 print:max-w-none print:h-[1120px] print:w-[794px] print:grid print:grid-rows-9 print:grid-cols-2 print:gap-y-0 print:gap-x-16 whitespace-nowrap text-[26px] font-mono leading-normal h-[1120px] grid grid-rows-9 grid-cols-2 gap-x-16">
+    <main className="mx-auto max-w-4xl p-8 print:p-4 print:max-w-none print:h-[1120px] print:w-[794px] print:grid print:grid-rows-9 print:grid-cols-2 print:gap-y-0 print:gap-x-8 whitespace-nowrap text-[26px] font-mono leading-normal h-[1120px] grid grid-rows-9 grid-cols-2 gap-x-8">
       {/* Title */}
       <div className="col-span-2 flex justify-center items-end text-[36px] font-bold mb-2">cmとmmの計算</div>
 
       {/* Problems */}
       {Array.from({ length: 8 }).map((_, i) => (
         <React.Fragment key={i}>
-          <div>{`${formatUnit(left[i].a)} ${left[i].symbol} ${formatUnit(left[i].b)} =`}</div>
-          <div>{`${formatUnit(right[i].a)} ${right[i].symbol} ${formatUnit(right[i].b)} =`}</div>
+          <div>
+            {`${formatUnit(left[i].a)}${thinSpace}${left[i].symbol}${thinSpace}${formatUnit(left[i].b)}${thinSpace}=`}
+          </div>
+          <div>
+            {`${formatUnit(right[i].a)}${thinSpace}${right[i].symbol}${thinSpace}${formatUnit(
+              right[i].b
+            )}${thinSpace}=`}
+          </div>
         </React.Fragment>
       ))}
     </main>
