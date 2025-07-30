@@ -15,32 +15,34 @@ function generateMixedProblems(): Problem[] {
 
   // 足し算
   while (problems.length < 2) {
-    const a = Math.floor(Math.random() * 90) + 10
-    const b = Math.floor(Math.random() * 90) + 10
-    problems.push({ a, b, symbol: "+" })
+    const a = Math.floor(Math.random() * 900) + 100
+    const b = Math.floor(Math.random() * 900) + 100
+    if (a + b <= 999) {
+      problems.push({ a, b, symbol: "+" })
+    }
   }
 
   while (problems.length < 4) {
     const a = Math.floor(Math.random() * 900) + 100
-    const b = Math.floor(Math.random() * 900) + 100
-    problems.push({ a, b, symbol: "+" })
-  }
-
-  while (problems.length < 6) {
-    const a = Math.floor(Math.random() * 900) + 100
     const b = Math.floor(Math.random() * 90) + 10
-    problems.push({ a, b, symbol: "+" })
+    if (a + b <= 999) {
+      problems.push({ a, b, symbol: "+" })
+    }
   }
 
   // 引き算：3桁 - 1桁
-  while (problems.length < 7) {
+  while (problems.length < 6) {
     const a = Math.floor(Math.random() * 900) + 100
     const b = Math.floor(Math.random() * 9) + 1
-    pushIfValid(a, b, "-")
+    const a1 = a % 10
+    const b1 = b % 10
+    if (a1 < b1) {
+      pushIfValid(a, b, "-")
+    }
   }
 
   // 1. くり下がりなし
-  while (problems.length < 8) {
+  while (problems.length < 7) {
     const a = Math.floor(Math.random() * 900) + 100
     const b = Math.floor(Math.random() * 90) + 10
     const a1 = a % 10
@@ -53,7 +55,7 @@ function generateMixedProblems(): Problem[] {
   }
 
   // 2. 10の位から借りる必要あり（1の位だけ繰り下がり）
-  while (problems.length < 10) {
+  while (problems.length < 9) {
     const a = Math.floor(Math.random() * 900) + 100
     const b = Math.floor(Math.random() * 90) + 10
     const a1 = a % 10
